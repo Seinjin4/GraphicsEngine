@@ -1,6 +1,13 @@
 #include "GeometryData.h"
 
 namespace geometry {
+	GeometryData::GeometryData():
+		vb(std::make_unique<VertexBuffer>()),
+		vertexArray(std::make_unique<VertexArray>()),
+		indexBuffer(std::make_unique<IndexBuffer>())
+	{
+	}
+
 	void GeometryData::CreateVertexArray(
 		const float cubeVertexBufferData[],
 		const unsigned int cubeVertexBufferDataSize,

@@ -11,7 +11,7 @@ namespace geometry
 		return vbLayout;
 	}
 
-	void PlaneGeometry::GenerateVertexBufferData(int segments)
+	void PlaneGeometry::GenerateVertexBufferData(unsigned int segments)
 	{
 		for (size_t y = 0; y < segments; y++)
 		{
@@ -36,7 +36,7 @@ namespace geometry
 		}
 	}
 
-	void PlaneGeometry::GenerateIndexBufferData(int segments)
+	void PlaneGeometry::GenerateIndexBufferData(unsigned int segments)
 	{
 		size_t polygonCount = 0;
 

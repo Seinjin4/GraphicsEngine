@@ -193,6 +193,7 @@
     <ClInclude Include="src\cameras\Camera.h" />
     <ClInclude Include="src\cameras\PerspectiveCamera.h" />
     <ClInclude Include="src\geometries\CubeGeometry.h" />
+    <ClInclude Include="src\geometries\IGeometry.h" />
     <ClInclude Include="src\geometries\GeometryData.h" />
     <ClInclude Include="src\geometries\BezierIntervalGeometry.h" />
     <ClInclude Include="src\geometries\GizmoGeometry.h" />

@@ -209,6 +209,9 @@
     <ClInclude Include="src\scenes\PlaneTestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\geometries\IGeometry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\NormalVisualization.shader" />

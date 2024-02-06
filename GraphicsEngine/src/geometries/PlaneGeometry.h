@@ -2,10 +2,11 @@
 
 #include "GeometryData.h"
 #include "VertexBufferLayout.h"
+#include "IGeometry.h"
 
 namespace geometry
 {
-	class PlaneGeometry
+	class PlaneGeometry final : public IGeometry
 	{
 	private:
 		std::vector<float>* planeVertexBufferData;
@@ -16,15 +17,15 @@ namespace geometry
 
 		VertexBufferLayout GenerateLayout();
 
-		void GenerateVertexBufferData(int segments);
+		void GenerateVertexBufferData(unsigned int segments);
 
-		void GenerateIndexBufferData(int segments);
+		void GenerateIndexBufferData(unsigned int segments);
 
 	public:
 		PlaneGeometry(const unsigned int segments);
 		~PlaneGeometry();
 
-		const VertexArray& GetVertexArray() { return geometryData.GetVertexArray(); };
-		const IndexBuffer& GetIndexBuffer() { return geometryData.GetIndexBuffer(); };
+		inline const VertexArray& GetVertexArray() const { return geometryData.GetVertexArray(); };
+		inline const IndexBuffer& GetIndexBuffer() const { return geometryData.GetIndexBuffer(); };
 	};
 }

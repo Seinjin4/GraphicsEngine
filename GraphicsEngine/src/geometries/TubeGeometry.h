@@ -7,10 +7,11 @@
 
 #include "GeometryData.h"
 #include "VertexBufferLayout.h"
+#include "IGeometry.h"
 
 namespace geometry
 {
-	class TubeGeometry
+	class TubeGeometry final : public IGeometry
 	{
 	private:
 		std::vector<float>* tubeVertexBufferData;
@@ -21,15 +22,15 @@ namespace geometry
 
 		VertexBufferLayout GenerateLayout();
 
-		void GenerateVertexBufferData(const std::vector<glm::vec3>& path, int segments, float radius, bool loop);
+		void GenerateVertexBufferData(const std::vector<glm::vec3>& path, unsigned int segments, float radius, bool loop);
 
-		void GenerateIndexBufferData(int pathPartCount, int segments, bool loop);
+		void GenerateIndexBufferData(unsigned int pathPartCount, unsigned int segments, bool loop);
 
 	public:
-		TubeGeometry(const std::vector<glm::vec3>& path, int segments, float radius, bool loop = false);
+		TubeGeometry(const std::vector<glm::vec3>& path, unsigned int segments, float radius, bool loop = false);
 		~TubeGeometry();
 
-		const VertexArray& GetVertexArray() { return geometryData.GetVertexArray(); };
-		const IndexBuffer& GetIndexBuffer() { return geometryData.GetIndexBuffer(); };
+		inline const VertexArray& GetVertexArray() const { return geometryData.GetVertexArray(); };
+		inline const IndexBuffer& GetIndexBuffer() const { return geometryData.GetIndexBuffer(); };
 	};
 }

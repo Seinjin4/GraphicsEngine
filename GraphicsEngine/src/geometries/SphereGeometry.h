@@ -7,10 +7,11 @@
 
 #include "GeometryData.h"
 #include "VertexBufferLayout.h"
+#include "IGeometry.h"
 
 namespace geometry
 {
-	class SphereGeometry
+	class SphereGeometry final : public IGeometry
 	{
 	private:
 		std::vector<float>* sphereVertexBufferData;
@@ -29,7 +30,7 @@ namespace geometry
 		SphereGeometry(float ratio, unsigned int verticalSegments = 10, unsigned int horizontalSegments = 10);
 		~SphereGeometry();
 
-		const VertexArray& GetVertexArray() { return geometryData.GetVertexArray(); };
-		const IndexBuffer& GetIndexBuffer() { return geometryData.GetIndexBuffer(); };
+		inline const VertexArray& GetVertexArray() const { return geometryData.GetVertexArray(); };
+		inline const IndexBuffer& GetIndexBuffer() const { return geometryData.GetIndexBuffer(); };
 	};
 }

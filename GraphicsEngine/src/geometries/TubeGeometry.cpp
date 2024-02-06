@@ -12,7 +12,7 @@ namespace geometry
 		return VertexBufferLayout();
 	}
 
-	void TubeGeometry::GenerateVertexBufferData(const std::vector<glm::vec3>& path, int segments, float radius, bool loop)
+	void TubeGeometry::GenerateVertexBufferData(const std::vector<glm::vec3>& path, unsigned int segments, float radius, bool loop)
 	{
 		glm::vec3 directionToNextPoint;
 		for (size_t pointIndex = 0; pointIndex < path.size(); pointIndex++)
@@ -85,9 +85,9 @@ namespace geometry
 		}
 	}
 
-	void TubeGeometry::GenerateIndexBufferData(int pathPartCount, int segments, bool loop)
+	void TubeGeometry::GenerateIndexBufferData(unsigned int pathPartCount, unsigned int segments, bool loop)
 	{
-		int tubePartCount;
+		unsigned int tubePartCount;
 
 		if (loop)
 			tubePartCount = pathPartCount;
@@ -111,7 +111,7 @@ namespace geometry
 		}
 	}
 
-	TubeGeometry::TubeGeometry(const std::vector<glm::vec3>& path, int segments, float radius, bool loop):
+	TubeGeometry::TubeGeometry(const std::vector<glm::vec3>& path, unsigned int segments, float radius, bool loop):
 		tubeVertexBufferData(new std::vector<float>),
 		tubeIndexBufferData(new std::vector<unsigned int>)
 	{

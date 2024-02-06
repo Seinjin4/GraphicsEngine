@@ -3,30 +3,23 @@
 #include "VertexArray.h"
 #include "IndexBuffer.h"
 #include "VertexBufferLayout.h"
+#include <memory>
 
 namespace geometry
 {
-	class GeometryData
+	class GeometryData final
 	{
 	private:
-		VertexBuffer* vb;
+		std::unique_ptr<VertexBuffer> vb;
 
-		VertexArray* vertexArray;
-		IndexBuffer* indexBuffer;
+		std::unique_ptr<VertexArray> vertexArray;
+		std::unique_ptr<IndexBuffer> indexBuffer;
 
 	public:
-		GeometryData() {
-			vb = new VertexBuffer();
-			vertexArray = new VertexArray();
-			indexBuffer = new IndexBuffer();
-		};
+		GeometryData();
+		GeometryData(const GeometryData&) = delete;
+		GeometryData& operator=(const GeometryData&) = delete;
 
-		~GeometryData()
-		{
-			delete vb;
-			delete vertexArray;
-			delete indexBuffer;
-		}
 
 		void CreateVertexArray (
 			const float cubeVertexBufferData[],
@@ -39,7 +32,7 @@ namespace geometry
 			const unsigned int indicesSize
 		);
 
-		const VertexArray& GetVertexArray() { return *vertexArray; };
-		const IndexBuffer& GetIndexBuffer() { return *indexBuffer; };
+		inline const VertexArray& GetVertexArray() const { return *vertexArray; };
+		inline const IndexBuffer& GetIndexBuffer() const { return *indexBuffer; };
 	};
 }

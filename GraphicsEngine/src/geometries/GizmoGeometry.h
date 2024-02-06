@@ -2,10 +2,11 @@
 
 #include "GeometryData.h"
 #include "VertexBufferLayout.h"
+#include "IGeometry.h"
 
 namespace geometry
 {
-	class GizmoGeometry
+	class GizmoGeometry final : public IGeometry
 	{
 	private:
 		GeometryData geometryData;
@@ -14,10 +15,9 @@ namespace geometry
 		void GenerateLayout();
 
 	public:
-
 		GizmoGeometry();
 
-		const VertexArray& GetVertexArray() { return geometryData.GetVertexArray(); };
-		const IndexBuffer& GetIndexBuffer() { return geometryData.GetIndexBuffer(); };
+		inline const VertexArray& GetVertexArray() const { return geometryData.GetVertexArray(); };
+		inline const IndexBuffer& GetIndexBuffer() const { return geometryData.GetIndexBuffer(); };
 	};
 }
