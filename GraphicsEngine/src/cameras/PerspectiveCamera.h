@@ -19,9 +19,14 @@ namespace camera
 
 		void UpdateProjectionMatrix();
 
-		inline float& GetNear() { return near; }
-		inline float& GetFar()  { return far; }
-		inline float& GetFov()  { return fov; }
-		inline float& GetAspectRatio()  { return aspectRatio; }
+		inline float GetNear() const { return near; }
+		inline float GetFar() const  { return far; }
+		inline float GetFov() const  { return fov; }
+		inline float GetAspectRatio() const  { return aspectRatio; }
+
+		void SetNear(float near) { this->near = near; UpdateProjectionMatrix(); }
+		void SetFar(float far) { this->far = far; UpdateProjectionMatrix(); }
+		void SetFov(float fov) { this->fov = fov; UpdateProjectionMatrix(); }
+		void SetAspectRatio(float aspectRatio) { this->aspectRatio = aspectRatio; UpdateProjectionMatrix(); }
 	};
 }
