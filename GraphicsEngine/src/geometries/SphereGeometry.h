@@ -14,8 +14,8 @@ namespace geometry
 	class SphereGeometry final : public IGeometry
 	{
 	private:
-		std::vector<float>* sphereVertexBufferData;
-		std::vector<unsigned int>* sphereIndexBufferData;
+		std::unique_ptr<std::vector<float>> sphereVertexBufferData;
+		std::unique_ptr < std::vector<unsigned int>> sphereIndexBufferData;
 
 		GeometryData geometryData;
 		VertexBufferLayout vbLayout;
@@ -28,7 +28,6 @@ namespace geometry
 
 	public:
 		SphereGeometry(float ratio, unsigned int verticalSegments = 10, unsigned int horizontalSegments = 10);
-		~SphereGeometry();
 
 		inline const VertexArray& GetVertexArray() const { return geometryData.GetVertexArray(); };
 		inline const IndexBuffer& GetIndexBuffer() const { return geometryData.GetIndexBuffer(); };

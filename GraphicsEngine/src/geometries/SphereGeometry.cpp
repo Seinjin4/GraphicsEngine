@@ -87,8 +87,8 @@ namespace geometry
 	}
 
 	SphereGeometry::SphereGeometry(float ratio, unsigned int verticalSegments, unsigned int horizontalSegments) :
-		sphereVertexBufferData(new std::vector<float>),
-		sphereIndexBufferData(new std::vector<unsigned int>)
+		sphereVertexBufferData(std::make_unique<std::vector<float>>()),
+		sphereIndexBufferData(std::make_unique<std::vector<unsigned int>>())
 	{
 		GenerateVertexBufferData(ratio, verticalSegments, horizontalSegments);
 		GenerateIndexBufferData(ratio, verticalSegments, horizontalSegments);
@@ -96,10 +96,5 @@ namespace geometry
 
 		geometryData.CreateVertexArray(sphereVertexBufferData->data(), sphereVertexBufferData->size() * sizeof(float), vbLayout);
 		geometryData.CreateIndexBuffer(sphereIndexBufferData->data(), sphereIndexBufferData->size());
-	}
-	SphereGeometry::~SphereGeometry()
-	{
-		delete sphereVertexBufferData;
-		delete sphereIndexBufferData;
 	}
 }
