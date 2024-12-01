@@ -22,6 +22,7 @@
 #include <scenes/SphereTestScene.h>
 #include <scenes/CyclidicCubeScene.h>
 #include <scenes/PlaneTestScene.h>
+#include <scenes/NewScene.h>
 
 int main(void)
 {
@@ -57,6 +58,15 @@ int main(void)
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
         GLCall(glEnable(GL_BLEND));
 
+        //geometry::MeshFactory meshFactory;
+        //NewScene scene;
+
+        //auto cubeMesh = meshFactory.CreateCubeMesh();
+
+        //auto& uniforms = cubeMesh->GetUniforms();
+
+        //scene.AddMesh(std::move(cubeMesh));
+
         //scenes::QuaternionicBezierScene scene;
         //scenes::DupinPatchScene scene;
         scenes::CyclidicCubeScene scene;
@@ -88,8 +98,8 @@ int main(void)
                 glm::vec3(
                     glm::cos(glm::radians(360.0f) * cameraPosW) * cameraDist,
                     cameraHeight,
-                    glm::sin(glm::radians(360.0f) * cameraPosW) * cameraDist) + scene.sceneCenter,
-                scene.sceneCenter,
+                    glm::sin(glm::radians(360.0f) * cameraPosW) * cameraDist) /* + scene.sceneCenter*/,
+                /*scene.sceneCenter*/ glm::vec3(0.0f, 0.0f, 0.0f),
                 glm::vec3(0.0f, 1.0f, 0.0f)
                 );
 

@@ -10,6 +10,31 @@ struct ShaderProgramSource
 	std::string FragmentSource;
 };
 
+union ShaderUniformValue
+{
+	float f3[3];
+	float f4[4];
+	float f;
+	int i;
+	glm::mat4 mat4;
+	glm::vec3 vec3;
+};
+
+enum ShaderUniformType {
+	f3 = 1,
+	f4 = 2,
+	f = 3,
+	i = 4,
+	mat4 = 5,
+	vec3 = 6
+};
+
+struct UniformTypeAndValue
+{
+	ShaderUniformType type;
+	ShaderUniformValue value;
+};
+
 class Shader
 {
 private:

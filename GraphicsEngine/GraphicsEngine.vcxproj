@@ -147,11 +147,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\scenes\NewScene.cpp" />
     <ClCompile Include="src\cameras\Camera.cpp" />
     <ClCompile Include="src\cameras\PerspectiveCamera.cpp" />
     <ClCompile Include="src\geometries\BezierIntervalGeometry.cpp" />
     <ClCompile Include="src\geometries\GeometryData.cpp" />
     <ClCompile Include="src\geometries\GizmoGeometry.cpp" />
+    <ClCompile Include="src\geometries\Mesh.cpp" />
     <ClCompile Include="src\geometries\PlaneGeometry.cpp" />
     <ClCompile Include="src\geometries\SphereGeometry.cpp" />
     <ClCompile Include="src\geometries\TubeGeometry.cpp" />
@@ -190,6 +192,7 @@
     <None Include="res\shaders\UVTest.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\scenes\NewScene.h" />
     <ClInclude Include="src\cameras\Camera.h" />
     <ClInclude Include="src\cameras\PerspectiveCamera.h" />
     <ClInclude Include="src\geometries\CubeGeometry.h" />
@@ -197,8 +200,10 @@
     <ClInclude Include="src\geometries\GeometryData.h" />
     <ClInclude Include="src\geometries\BezierIntervalGeometry.h" />
     <ClInclude Include="src\geometries\GizmoGeometry.h" />
+    <ClInclude Include="src\geometries\Mesh.h" />
     <ClInclude Include="src\geometries\PlaneGeometry.h" />
     <ClInclude Include="src\geometries\SphereGeometry.h" />
+    <ClInclude Include="src\geometries\StaticVertexData.h" />
     <ClInclude Include="src\geometries\TubeGeometry.h" />
     <ClInclude Include="src\scenes\CyclidicCubeScene.h" />
     <ClInclude Include="src\scenes\DupinPatchScene.h" />

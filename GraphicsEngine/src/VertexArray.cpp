@@ -3,15 +3,17 @@
 #include "Renderer.h"
 
 VertexArray::VertexArray()
+	: m_RendererID(std::make_unique<unsigned int>())
 {
-	GLCall(glGenVertexArrays(1, &m_RendererID));
-	GLCall(glBindVertexArray(m_RendererID));
+	GLCall(glGenVertexArrays(1, m_RendererID.get()));
+	GLCall(glBindVertexArray(*m_RendererID));
 }
 
 VertexArray::VertexArray(const VertexBuffer& vb, const VertexBufferLayout& layout)
+	: m_RendererID(std::make_unique<unsigned int>())
 {
-	GLCall(glGenVertexArrays(1, &m_RendererID));
-	GLCall(glBindVertexArray(m_RendererID));
+	GLCall(glGenVertexArrays(1, m_RendererID.get()));
+	GLCall(glBindVertexArray(*m_RendererID));
 
 	Bind();
 	vb.Bind();
@@ -28,9 +30,24 @@ VertexArray::VertexArray(const VertexBuffer& vb, const VertexBufferLayout& layou
 	}
 }
 
+VertexArray::VertexArray(VertexArray&& other) noexcept
+	:m_RendererID(std::move(other.m_RendererID))
+{
+}
+
+VertexArray& VertexArray::operator=(VertexArray&& other) noexcept
+{
+	if (this != &other)
+	{
+
+		m_RendererID = std::move(other.m_RendererID);
+	}
+	return *this;
+}
+
 VertexArray::~VertexArray()
 {
-	GLCall(glDeleteVertexArrays(1, &m_RendererID));
+	GLCall(glDeleteVertexArrays(1, m_RendererID.get()));
 }
 
 void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout)
@@ -52,7 +69,7 @@ void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& la
 
 void VertexArray::Bind() const
 {
-	GLCall(glBindVertexArray(m_RendererID));
+	GLCall(glBindVertexArray(*m_RendererID));
 }
 
 void VertexArray::Unbind() const

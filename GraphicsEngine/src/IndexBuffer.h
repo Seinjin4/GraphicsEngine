@@ -1,14 +1,22 @@
 #pragma once
+#include <memory>
 
 class IndexBuffer
 {
 private:
-	unsigned int m_RendererID;
+	std::unique_ptr<unsigned int> m_RendererID;
 	unsigned int m_Count;
+
 public:
 	IndexBuffer();
 	IndexBuffer(const unsigned int* data, unsigned int count);
+
 	IndexBuffer(const IndexBuffer&) = delete;
+	IndexBuffer& operator=(const IndexBuffer&) = delete;
+
+	IndexBuffer(IndexBuffer&&) noexcept;
+	IndexBuffer& operator=(IndexBuffer&&) noexcept;
+
 	~IndexBuffer();
 
 	void CreateBuffer(const unsigned int* data, unsigned int count);
