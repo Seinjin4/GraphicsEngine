@@ -47,7 +47,6 @@ namespace geometry
 		GeometryDataFactory m_geometryDataFactory;
 		std::map<std::string, Shader> m_shaderMap; //Temporary
 
-
 	public:
 		MeshFactory() = default;
 

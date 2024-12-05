@@ -58,18 +58,28 @@ int main(void)
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
         GLCall(glEnable(GL_BLEND));
 
-        //geometry::MeshFactory meshFactory;
-        //NewScene scene;
+        geometry::MeshFactory meshFactory;
+        NewScene scene;
 
-        //auto cubeMesh = meshFactory.CreateCubeMesh();
+        
+        for (int i = 0; i < 15; i++)
+        {
+            for (int j = 0; j < 15; j++)
+            {
+                auto cubeMesh = meshFactory.CreateCubeMesh();
+                SceneObject scnObj(std::move(cubeMesh), glm::vec3(i * 5 - 23, 0.0, j * 5 - 25));
 
-        //auto& uniforms = cubeMesh->GetUniforms();
+                auto color = scnObj.GetMesh().GetUniforms().find("objectColor");
 
-        //scene.AddMesh(std::move(cubeMesh));
+                color->second.value.vec3 = glm::vec3(0.55 + 0.02 * i, 0.55, 0.55 - 0.02 * j);
+
+                scene.AddSceneObject(std::move(scnObj));
+            }
+        }
 
         //scenes::QuaternionicBezierScene scene;
         //scenes::DupinPatchScene scene;
-        scenes::CyclidicCubeScene scene;
+        //scenes::CyclidicCubeScene scene;
         //scenes::SphereTestScene scene;
         //scenes::TubeTestScene scene;
         //scenes::PlaneTestScene scene;

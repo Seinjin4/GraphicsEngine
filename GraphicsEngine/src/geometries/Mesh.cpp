@@ -33,18 +33,18 @@ namespace geometry
 
 	Mesh::Mesh(const GeometryData& data, Shader& shader, std::map<std::string, UniformTypeAndValue>&& uniforms)
 		: m_data(data), m_shader(shader), m_uniforms(std::move(uniforms))
-		{
-		}
+	{
+	}
 
 	void Mesh::Render(const Renderer& renderer) const
+	{
+		m_shader.Bind();
+		for(const auto& uniform : m_uniforms)
 		{
-			m_shader.Bind();
-			for(const auto& uniform : m_uniforms)
-			{
-				SetUniform(m_shader, uniform.first, uniform.second);
-			};
-			renderer.DrawTriangles(m_data.GetVertexArray(), m_data.GetIndexBuffer(), m_shader);
-		}
+			SetUniform(m_shader, uniform.first, uniform.second);
+		};
+		renderer.DrawTriangles(m_data.GetVertexArray(), m_data.GetIndexBuffer(), m_shader);
+	}
 
 	std::map<std::string, UniformTypeAndValue>& Mesh::GetUniforms()
 	{
