@@ -71,6 +71,26 @@ namespace geometry
 		return std::make_unique<Mesh>(m_geometryDataFactory.GetCubeGeometryData(), shaderMapEntry->second, std::move(uniforms));
 	}
 
+	std::unique_ptr<Mesh> MeshFactory::CreateSphereMesh(unsigned int horizontalSegments, unsigned int verticalSegments)
+	{
+		auto shaderMapEntry = m_shaderMap.find("ShadedColor");
+		if (shaderMapEntry == m_shaderMap.end())
+		{
+			m_shaderMap.emplace("ShadedColor", "res/shaders/ShadedColor.shader");
+			shaderMapEntry = m_shaderMap.find("ShadedColor");
+		}
+
+		std::map<std::string, UniformTypeAndValue> uniforms;
+
+		uniforms.emplace("MVP", UniformTypeAndValue{ ShaderUniformType::mat4, ShaderUniformValue{ } });
+		uniforms.emplace("lightPos", UniformTypeAndValue{ ShaderUniformType::vec3, ShaderUniformValue{ {0.0f, 5.0f, 0.0f} } });
+		uniforms.emplace("viewPos", UniformTypeAndValue{ ShaderUniformType::vec3, ShaderUniformValue{} });
+		uniforms.emplace("lightColor", UniformTypeAndValue{ ShaderUniformType::vec3, ShaderUniformValue{ {1.0f, 1.0f, 1.0f} } });
+		uniforms.emplace("objectColor", UniformTypeAndValue{ ShaderUniformType::vec3, ShaderUniformValue{ {0.55f, 0.55f, 0.55f} } });
+
+		return std::make_unique<Mesh>(m_geometryDataFactory.GetSphereGeometryData(horizontalSegments, verticalSegments), shaderMapEntry->second, std::move(uniforms));
+	}
+
 	//IMesh MeshFactory::CreateSphereMesh()
 	//{
 	//	return IMesh();

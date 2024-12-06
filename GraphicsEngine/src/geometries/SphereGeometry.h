@@ -31,5 +31,8 @@ namespace geometry
 
 		inline const VertexArray& GetVertexArray() const { return geometryData.GetVertexArray(); };
 		inline const IndexBuffer& GetIndexBuffer() const { return geometryData.GetIndexBuffer(); };
+
+		static std::vector<unsigned int> GenerateIndexBuffer(unsigned int verticalSegments, unsigned int horizontalSegments);
+		static std::vector<float> GenerateVertexBuffer(float ratio, unsigned int verticalSegments, unsigned int horizontalSegments);
 	};
 }

@@ -36,7 +36,7 @@ namespace geometry
 	{
 	public:
 		virtual std::unique_ptr<Mesh> CreateCubeMesh() = 0;
-		//virtual Mesh CreateSphereMesh() = 0;
+		virtual std::unique_ptr<Mesh> CreateSphereMesh(unsigned int horizontalSegments, unsigned int verticalSegments) = 0;
 		//virtual Mesh CreatePlaneMesh() = 0;
 		//virtual Mesh CreateCustomMesh(const GeometryData& data) = 0;
 	};
@@ -51,7 +51,7 @@ namespace geometry
 		MeshFactory() = default;
 
 		std::unique_ptr<Mesh> CreateCubeMesh() override;
-		//Mesh CreateSphereMesh() override;
+		std::unique_ptr<Mesh> CreateSphereMesh(unsigned int horizontalSegments, unsigned int verticalSegments) override;
 		//Mesh CreatePlaneMesh() override;
 		//Mesh CreateCustomMesh(const GeometryData& data) override;
 	};

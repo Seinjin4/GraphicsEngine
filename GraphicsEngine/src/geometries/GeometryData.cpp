@@ -1,6 +1,8 @@
 #include "GeometryData.h"
 #include "StaticVertexData.h"
 #include "CubeGeometry.h"
+#include "SphereGeometry.h"
+#include <sstream>
 
 namespace geometry {
 
@@ -63,15 +65,41 @@ namespace geometry {
 
 		GeometryData geometryData;
 
-		//geometryData.CreateVertexArray(geometry::cubeVertexBufferData, 216 * sizeof(float), GenerateStandartLayout());
-		//geometryData.CreateIndexBuffer(geometry::cubeIndexBufferData, 36);
-		
 		geometryData.CreateVertexArray(VertexData::CubeVertexBufferData, VertexData::CubeVertexBufferData_SIZE * sizeof(float), GenerateStandartLayout());
 		geometryData.CreateIndexBuffer(VertexData::CubeIndexBufferData, VertexData::CubeIndexBufferData_SIZE);
 
 		GeometryDataCache::GetInstance().Put("cube", std::move(geometryData));
 
 		cacheResult = GeometryDataCache::GetInstance().Get("cube");
+		if (cacheResult == nullptr)
+		{
+			//TODO: ASSERT FASLE HERE
+			//return assert(false);
+		}
+
+		return *cacheResult;
+	}
+
+	GeometryData& GeometryDataFactory::GetSphereGeometryData(unsigned int horizontalSegments, unsigned int verticalSegments)
+	{
+		std::stringstream ss;
+		ss << "sphere" << "_" << horizontalSegments << "_" << verticalSegments;
+		std::string sphereId = ss.str();
+
+		auto cacheResult = GeometryDataCache::GetInstance().Get(sphereId);
+		if (cacheResult != nullptr)
+			return *cacheResult;
+		
+		auto sphereVertexBuffer = geometry::SphereGeometry::GenerateVertexBuffer(1.0, verticalSegments, horizontalSegments);
+		auto sphereIndexBuffer = geometry::SphereGeometry::GenerateIndexBuffer(verticalSegments, horizontalSegments);
+
+		GeometryData geometryData;
+		geometryData.CreateVertexArray(sphereVertexBuffer.data(), sphereVertexBuffer.size() * sizeof(float), GenerateStandartLayout());
+		geometryData.CreateIndexBuffer(sphereIndexBuffer.data(), sphereIndexBuffer.size());
+
+		GeometryDataCache::GetInstance().Put(std::string(sphereId), std::move(geometryData));
+
+		cacheResult = GeometryDataCache::GetInstance().Get(sphereId);
 		if (cacheResult == nullptr)
 		{
 			//TODO: ASSERT FASLE HERE

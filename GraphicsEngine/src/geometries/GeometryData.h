@@ -65,6 +65,7 @@ namespace geometry
 		GeometryDataFactory operator =(GeometryDataFactory&&) = delete;
 
 		GeometryData& GetCubeGeometryData();
+		GeometryData& GetSphereGeometryData(unsigned int horizontalSegments, unsigned int verticalSegments);
 	};
 
 }
